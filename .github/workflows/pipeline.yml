@@ -1,0 +1,19 @@
+name: DevSecOps Pipeline
+
+on: [push]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Semgrep (SAST)
+        run: |
+          pip install semgrep
+          semgrep scan --json -o semgrep_report.json .
+        continue-on-error: true 
+
+      - name: Run Snyk (Dependency Scan)
+        uses: snyk/actions/setup@master
