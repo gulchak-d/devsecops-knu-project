@@ -13,7 +13,10 @@ jobs:
         run: |
           pip install semgrep
           semgrep scan --json -o semgrep_report.json .
-        continue-on-error: true 
+        continue-on-error: true
 
-      - name: Run Snyk (Dependency Scan)
-        uses: snyk/actions/setup@master
+      - name: Install and Run Snyk (Dependency Scan)
+        run: |
+          npm install -g snyk
+          snyk test --all-projects --json > snyk_report.json || true
+        continue-on-error: true
