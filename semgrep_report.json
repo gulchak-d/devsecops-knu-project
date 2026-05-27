@@ -1,0 +1,9 @@
+{
+  "results": [
+    {
+      "path": "auth_service/main.py",
+      "start": {"line": 12},
+      "extra": {"message": "Detected string concatenation with SQL query. This is vulnerable to SQL injection."}
+    }
+  ]
+}
