@@ -120,12 +120,12 @@ def parse_snyk_report(path: str) -> list[Vulnerability]:
             file_path  = "requirements.txt",
             line_start = 0,
             line_end   = 0,
-            message    = (
+             message    = (
                 f"{finding.get('title', '')} in "
                 f"{' > '.join(finding.get('from', []))}. "
-                f"CVE: {finding.get('identifiers', {}).get('CVE', ['N/A'])[0]}"
+                f"CVE: {(finding.get('identifiers', {}).get('CVE') or ['N/A'])[0]}"
             ),
-            cve        = finding.get("identifiers", {}).get("CVE", [""])[0],
+            cve        = (finding.get("identifiers", {}).get("CVE") or [""])[0],
         )
         vulns.append(vuln)
 
