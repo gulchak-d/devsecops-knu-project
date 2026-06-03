@@ -1,3 +1,12 @@
+# DevSecOps Pipeline з AI Vulnerability Detection
+## Дипломна робота — Тестовий стенд мікросервісів
+
+> ⚠️ **УВАГА**: Цей репозиторій містить **навмисні вразливості** безпеки для демонстрації роботи DevSecOps pipeline. Не використовуйте цей код у production!
+
+---
+
+## Архітектура проєкту
+
 ```
 devsecops-thesis/
 ├── services/

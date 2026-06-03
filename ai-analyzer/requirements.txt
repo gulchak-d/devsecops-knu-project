@@ -1,0 +1,2 @@
+# AI Security Analyzer Dependencies
+google-generativeai==0.7.2
