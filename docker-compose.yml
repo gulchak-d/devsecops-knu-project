@@ -1,0 +1,141 @@
+# =============================================================
+# docker-compose.yml — DevSecOps Thesis Test Environment
+# =============================================================
+# Запуск: docker-compose up --build
+# Зупинка: docker-compose down -v
+#
+# Сервіси:
+#   - database:     PostgreSQL 15 (порт 5432)
+#   - auth-service: FastAPI JWT Auth (порт 8000)
+#   - data-service: File Processing  (порт 8001)
+# =============================================================
+
+version: '3.9'
+
+networks:
+  devsecops-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+volumes:
+  postgres-data:
+    driver: local
+  uploads-data:
+    driver: local
+
+services:
+
+  # ============================================================
+  # PostgreSQL Database
+  # ============================================================
+  database:
+    image: postgres:15-alpine
+    container_name: devsecops-database
+    restart: unless-stopped
+    networks:
+      devsecops-net:
+        ipv4_address: 172.20.0.10
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: authdb
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./services/database/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d authdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ============================================================
+  # Auth Service — FastAPI (SQL Injection vulnerabilities)
+  # ============================================================
+  auth-service:
+    build:
+      context: ./services/auth-service
+      dockerfile: Dockerfile
+    container_name: devsecops-auth
+    restart: unless-stopped
+    networks:
+      devsecops-net:
+        ipv4_address: 172.20.0.11
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "postgresql://admin:password123@database:5432/authdb"
+      JWT_SECRET_KEY: "super_secret_key_12345_do_not_share"
+      JWT_ALGORITHM: "HS256"
+      JWT_EXPIRY_HOURS: "24"
+      PYTHONUNBUFFERED: "1"
+      APP_ENV: "development"
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./services/auth-service:/app:ro  # Read-only для безпеки
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ============================================================
+  # Data Service — File Processing (Command Injection vulnerabilities)
+  # ============================================================
+  data-service:
+    build:
+      context: ./services/data-service
+      dockerfile: Dockerfile
+    container_name: devsecops-data
+    restart: unless-stopped
+    networks:
+      devsecops-net:
+        ipv4_address: 172.20.0.12
+    ports:
+      - "8001:8001"
+    environment:
+      UPLOAD_DIR: "/tmp/uploads"
+      MAX_FILE_SIZE: "10485760"   # 10MB
+      AUTH_SERVICE_URL: "http://auth-service:8000"
+      PYTHONUNBUFFERED: "1"
+      APP_ENV: "development"
+    depends_on:
+      - auth-service
+    volumes:
+      - uploads-data:/tmp/uploads
+      - ./services/data-service:/app:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ============================================================
+  # pgAdmin — PostgreSQL Web UI (опціонально, для дебагу)
+  # ============================================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: devsecops-pgadmin
+    restart: unless-stopped
+    networks:
+      devsecops-net:
+        ipv4_address: 172.20.0.13
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@thesis.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    depends_on:
+      - database
+    profiles:
+      - debug  # Запускається лише з: docker-compose --profile debug up

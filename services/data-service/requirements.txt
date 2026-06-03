@@ -1,0 +1,45 @@
+# Data Service Dependencies
+# ❌ НАВМИСНО ЗАСТАРІЛІ ВЕРСІЇ для демонстрації CVE у Snyk/OWASP Dependency-Check
+
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.5
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: Pillow 9.3.0
+# CVE-2023-44271: Uncontrolled resource consumption
+# CVE-2023-50447: Arbitrary code execution via crafted image
+# Безпечна версія: >= 10.2.0
+Pillow==9.3.0
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: requests 2.28.0
+# CVE-2023-32681: Redirect to different host leaking credentials
+# Безпечна версія: >= 2.31.0
+requests==2.28.0
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: PyYAML 5.4.1
+# CVE-2022-1471 (SnakeYAML): Arbitrary code execution
+# Безпечна версія: >= 6.0.1
+PyYAML==5.4.1
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: aiohttp 3.8.1
+# CVE-2023-37276: HTTP request smuggling
+# CVE-2023-49081: Directory traversal
+# Безпечна версія: >= 3.9.0
+aiohttp==3.8.1
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: lxml 4.9.0
+# CVE-2022-2309: NULL pointer dereference
+# Безпечна версія: >= 4.9.3
+lxml==4.9.0
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: Werkzeug 2.2.2
+# CVE-2023-25577: High-memory-consumption DoS
+# CVE-2023-46136: Path traversal via crafted request
+# Безпечна версія: >= 3.0.1
+Werkzeug==2.2.2
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: paramiko 2.11.0
+# CVE-2023-48795: Terrapin attack (prefix truncation)
+# Безпечна версія: >= 3.4.0
+paramiko==2.11.0

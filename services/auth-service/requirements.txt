@@ -1,0 +1,22 @@
+# Auth Service Dependencies
+# Деякі версії навмисно застарілі для демонстрації CVE-вразливостей
+
+fastapi==0.104.1
+uvicorn==0.24.0
+psycopg2-binary==2.9.9
+pydantic==2.5.0
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: PyJWT 1.7.1
+# CVE-2022-29217: JWT алгоритм confusion attack
+# Безпечна версія: >= 2.4.0
+PyJWT==1.7.1
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: cryptography 3.3.2
+# CVE-2023-23931: Buffer over-read vulnerability
+# Безпечна версія: >= 40.0.0
+cryptography==3.3.2
+
+# ❌ ВРАЗЛИВА ВЕРСІЯ: python-multipart 0.0.5
+# CVE-2024-24762: DoS via malicious multipart data
+# Безпечна версія: >= 0.0.7
+python-multipart==0.0.5
