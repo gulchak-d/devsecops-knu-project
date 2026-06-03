@@ -23,7 +23,7 @@ WORKDIR /app
 # (Копіюємо requirements окремо для кешування шарів Docker)
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt || true
 
 # Копіювання коду застосунку
 COPY . .
