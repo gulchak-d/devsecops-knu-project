@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Report — DevSecOps Pipeline</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; color: #1e293b; }
+    .header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white; padding: 32px 40px; }
+    .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+    .header p  { color: #94a3b8; font-size: 14px; }
+    .status-badge { display: inline-block; padding: 6px 18px; border-radius: 20px; font-weight: 700; font-size: 16px; margin-top: 16px; background: #16a34a; color: white; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); text-align: center; }
+    .card .number { font-size: 36px; font-weight: 800; }
+    .card .label  { font-size: 13px; color: #64748b; margin-top: 4px; }
+    .section { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); overflow: hidden; }
+    .section-title { padding: 20px 24px; border-bottom: 1px solid #e2e8f0; font-weight: 700; font-size: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th { background: #f8fafc; padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; }
+    td { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover { background: #fafafa; }
+    .footer { text-align: center; padding: 24px; color: #94a3b8; font-size: 13px; }
+    @media (max-width: 768px) { .header { padding: 24px 20px; } th, td { padding: 8px; } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔒 Security Pipeline Report</h1>
+  <p>Generated: 2026-06-03 19:54 UTC &nbsp;|&nbsp; <span style="color:#6b7280;font-size:13px">Commit: <code>7a51314</code></span></p>
+  <div class="status-badge">✅ Pipeline PASS</div>
+</div>
+
+<div class="container">
+
+  <div class="cards">
+    <div class="card">
+      <div class="number" style="color:#3b82f6">53</div>
+      <div class="label">Total Findings</div>
+    </div>
+    <div class="card">
+      <div class="number" style="color:#dc2626">0</div>
+      <div class="label">True Positives</div>
+    </div>
+    <div class="card">
+      <div class="number" style="color:#16a34a">0</div>
+      <div class="label">False Positives</div>
+    </div>
+    <div class="card">
+      <div class="number" style="color:#d97706">53</div>
+      <div class="label">Needs Review</div>
+    </div>
+    <div class="card">
+      <div class="number" style="color:#16a34a">0</div>
+      <div class="label">Blocking Issues</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔍 Vulnerability Analysis Results</div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Severity</th>
+            <th>Type</th>
+            <th>File</th>
+            <th>Verdict</th>
+            <th>Confidence</th>
+            <th>Explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr>
+          <td><code style="font-size:12px">semgrep-001</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">warning</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">insecure-hash-algorithm-md5</td>
+          <td><code style="font-size:11px">services/auth-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-002</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">warning</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">md5-used-as-password</td>
+          <td><code style="font-size:11px">services/auth-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-003</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">jwt-python-hardcoded-secret</td>
+          <td><code style="font-size:11px">services/auth-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-004</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">subprocess-injection</td>
+          <td><code style="font-size:11px">services/data-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-005</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">subprocess-shell-true</td>
+          <td><code style="font-size:11px">services/data-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-006</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">ssrf-injection-requests</td>
+          <td><code style="font-size:11px">services/data-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-007</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">ssrf-injection-requests</td>
+          <td><code style="font-size:11px">services/data-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-008</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">ssrf-requests</td>
+          <td><code style="font-size:11px">services/data-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-009</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">avoid-pyyaml-load</td>
+          <td><code style="font-size:11px">services/data-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">semgrep-010</code></td>
+          <td><span style="color:#6b7280;font-weight:700;text-transform:uppercase">error</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">subprocess-shell-true</td>
+          <td><code style="font-size:11px">services/data-service/main.py</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-001</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Race Condition</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-002</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Race Condition</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-003</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Insufficient Verification of Data Authenticity</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-004</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Improper Certificate Validation</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-005</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-006</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Expected Behavior Violation</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-007</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Use After Free</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-008</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Access of Resource Using Incompatible Type ('Type Confusion')</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-009</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Timing Attack</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-010</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-011</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-012</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-013</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-014</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-015</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-016</code></td>
+          <td><span style="color:#65a30d;font-weight:700;text-transform:uppercase">low</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Insufficient Verification of Data Authenticity</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-017</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-018</code></td>
+          <td><span style="color:#65a30d;font-weight:700;text-transform:uppercase">low</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-019</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-020</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Missing Cryptographic Step</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-021</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Denial of Service (DoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-022</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">NULL Pointer Dereference</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-023</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Observable Timing Discrepancy</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-024</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">NULL Pointer Dereference</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-025</code></td>
+          <td><span style="color:#65a30d;font-weight:700;text-transform:uppercase">low</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Uncontrolled Resource Consumption ('Resource Exhaustion')</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-026</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Regular Expression Denial of Service (ReDoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-027</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Inadequate Encryption Strength</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-028</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Improper Verification of Cryptographic Signature</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-029</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Improper Authentication</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-030</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Allocation of Resources Without Limits or Throttling</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-031</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Improper Cleanup on Thrown Exception</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-032</code></td>
+          <td><span style="color:#65a30d;font-weight:700;text-transform:uppercase">low</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Unintended Proxy or Intermediary ('Confused Deputy')</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-033</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Improper Verification of Cryptographic Signature</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-034</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Use of a Broken or Risky Cryptographic Algorithm</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-035</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Directory Traversal</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-036</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Excessive Iteration</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-037</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Allocation of Resources Without Limits or Throttling</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-038</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Regular Expression Denial of Service (ReDoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-039</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Allocation of Resources Without Limits or Throttling</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-040</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Allocation of Resources Without Limits or Throttling</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-041</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Regular Expression Denial of Service (ReDoS)</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-042</code></td>
+          <td><span style="color:#d97706;font-weight:700;text-transform:uppercase">medium</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">HTTP Request Smuggling</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        <tr>
+          <td><code style="font-size:12px">snyk-043</code></td>
+          <td><span style="color:#ea580c;font-weight:700;text-transform:uppercase">high</span></td>
+          <td style="font-size:13px;max-width:200px;word-break:break-all">Allocation of Resources Without Limits or Throttling</td>
+          <td><code style="font-size:11px">requirements.txt</code></td>
+          <td><span style="padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;background:#fef9c3;color:#854d0e;border:1px solid #fde047">🟡 Needs Review</span></td>
+          <td style="font-size:12px">0%</td>
+          <td style="font-size:12px;color:#4b5563">API error: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Cal...</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  DevSecOps Pipeline — Semgrep + Snyk + Gemini AI &nbsp;|&nbsp; Run ID: 26909160230
+</div>
+
+</body>
+</html>
