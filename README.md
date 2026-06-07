@@ -110,6 +110,4 @@ curl "http://localhost:8001/read?filename=../../etc/passwd"
 
 ---
 
-## Ліцензія
 
-Тільки для освітніх цілей. MIT License.
