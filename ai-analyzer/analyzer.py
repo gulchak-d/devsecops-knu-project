@@ -1,6 +1,6 @@
 """
 AI Security Analyzer
-Parses Semgrep and Snyk reports, sends findings to OpenAI API,
+Parses Semgrep and Snyk reports, sends findings to Gemini API,
 classifies them as True/False Positive and suggests fixes.
 
 Usage:
@@ -17,17 +17,15 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from openai import OpenAI
+import google.generativeai as genai
 
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-OPENAI_MODEL   = "gpt-4o-mini"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_MODEL   = "gemini-2.0-flash"
 
-# severities that block the pipeline
 BLOCKING_SEVERITIES = {"critical", "high"}
 
-# delay between api calls to avoid rate limiting
-API_DELAY_SECONDS = 1
+API_DELAY_SECONDS = 2
 
 
 @dataclass
@@ -189,21 +187,12 @@ Analyze the following security finding and determine if it is a TRUE POSITIVE or
 }}"""
 
 
-def analyze_with_openai(vuln: Vulnerability, client: OpenAI) -> AnalysisResult:
+def analyze_with_gemini(vuln: Vulnerability, model) -> AnalysisResult:
     prompt = build_prompt(vuln)
 
     try:
-        response = client.chat.completions.create(
-            model=OPENAI_MODEL,
-            messages=[
-                {"role": "system", "content": "You are a senior application security engineer. Always respond with valid JSON only."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.1,
-            max_tokens=1000,
-        )
-
-        raw_text = response.choices[0].message.content.strip()
+        response = model.generate_content(prompt)
+        raw_text = response.text.strip()
 
         if raw_text.startswith("```"):
             raw_text = raw_text.split("```")[1]
@@ -229,9 +218,10 @@ def analyze_with_openai(vuln: Vulnerability, client: OpenAI) -> AnalysisResult:
             confidence       = 0,
             explanation      = f"AI response could not be parsed: {e}",
             remediation_code = "",
+            ai_raw_response  = response.text if 'response' in locals() else "",
         )
     except Exception as e:
-        print(f"[ERROR] OpenAI API error for {vuln.id}: {e}")
+        print(f"[ERROR] Gemini API error for {vuln.id}: {e}")
         return AnalysisResult(
             vulnerability    = vuln,
             verdict          = "NEEDS_REVIEW",
@@ -290,13 +280,14 @@ def main():
     args = parser.parse_args()
 
     if not args.dry_run:
-        if not OPENAI_API_KEY:
-            print("[ERROR] OPENAI_API_KEY is not set")
+        if not GEMINI_API_KEY:
+            print("[ERROR] GEMINI_API_KEY is not set")
             sys.exit(1)
-        client = OpenAI(api_key=OPENAI_API_KEY)
-        print(f"[INFO] Using model: {OPENAI_MODEL}")
+        genai.configure(api_key=GEMINI_API_KEY)
+        model = genai.GenerativeModel(GEMINI_MODEL)
+        print(f"[INFO] Using model: {GEMINI_MODEL}")
     else:
-        client = None
+        model = None
         print("[INFO] Dry-run mode")
 
     all_vulns: list[Vulnerability] = []
@@ -340,7 +331,7 @@ def main():
             )
         else:
             print(f"\n[INFO] Analyzing {vuln.id} ({i}/{len(all_vulns)})...")
-            result = analyze_with_openai(vuln, client)
+            result = analyze_with_gemini(vuln, model)
             time.sleep(API_DELAY_SECONDS)
 
         print_result(result, i, len(all_vulns))
