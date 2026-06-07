@@ -298,9 +298,15 @@ def main():
         all_vulns.extend(parse_semgrep_report(args.semgrep))
     if args.snyk:
         all_vulns.extend(parse_snyk_report(args.snyk))
-# analyze only high/critical to stay within free API quota
-    all_vulns = [v for v in all_vulns if v.severity in ("critical", "high", "error")]
-    print(f"[INFO] After filtering: {len(all_vulns)} high/critical findings")
+# keep only unique types, max 8 findings
+    seen_types = set()
+    filtered = []
+    for v in all_vulns:
+        if v.severity in ("critical", "high", "error") and v.type not in seen_types:
+            seen_types.add(v.type)
+            filtered.append(v)
+    all_vulns = filtered[:8]
+    print(f"[INFO] After filtering: {len(all_vulns)} unique high/critical findings")
     if not all_vulns:
         print("[INFO] No vulnerabilities found. Pipeline: PASS")
         sys.exit(0)
