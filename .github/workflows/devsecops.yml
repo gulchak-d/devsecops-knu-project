@@ -149,7 +149,7 @@ jobs:
             --snyk    reports/snyk.json \
             --output  reports/ai-report.json
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Generate HTML report
         if: always()
